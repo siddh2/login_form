@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body{
+            background-color: #787d79;
+        }
+        .form1{
+            padding-top: 100px;
+            margin: 20px,20px;
+        }
+        .button {
+           background-color: #2cf5f1;
+            width: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+        .button:hover {
+            background-color:#55ed79;
+            width: 250px;
+            transition: 0.5s;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+
+        }
+
+
+        }
+    </style>
+</head>
+<body>
+<center><form class="form1" action = " " method = "post" novalidate>
+{% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="er">{{error}}</p>
+        {% endfor %}
+    {% endif %}
+{% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+{% endfor %}
+    <input class="button" type = "submit" value="Submit">
+</form>
+{% if messages %}
+{% for message in messages %}
+<small {% if message.tags %} class="{{message.tags}}"{% endif %}>{{messages}}</small>
+{% endfor %}
+{% endif %}
+<a href="{% url 'login' %}">Login</a>
+</center>
+</body>
+</html>

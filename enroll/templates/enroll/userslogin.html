@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <style>
+    body{
+        padding: 0;
+        margin: 0;
+     background-repeat: no-repeat;
+     background-color:#cacfcd;
+    
+
+    }
+    .er{
+        color:red;
+    }
+    .form1{
+        padding-top:250px;
+       
+
+    }
+    .button{
+        background-color: #2beefc;
+        width: 100px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .button:hover{
+        background-color: #30d94c;
+        transition: 0.5s;
+    }
+
+    </style>
+</head>
+<body>
+    <center><form class="form1" action="" method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="er">{{error}}</p>
+        {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+     <input class="button" type="submit" value="Login">
+    </form>
+   
+    <a href="{% url 'signup'%}">Signup</a></center>
+</body>
+</html>
